@@ -1,14 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
 Vue.use(VueRouter);
-
 const routes = [
   {
-    path: "/",
+    path: "/:page",
     name: "Home",
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+  },
+  {
+    path: "/",
+    name: "Homezero",
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
     path: "/about",
@@ -18,6 +20,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/pokemons/:name",
+    component: () =>
+      import(/* webpackChunkName: "pokemon" */ "../views/Pokemon.vue"),
   },
 ];
 
